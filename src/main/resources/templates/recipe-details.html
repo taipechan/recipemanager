@@ -1,0 +1,28 @@
+<!DOCTYPE html> 
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${recipe.title}">レシピ詳細</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1 th:text="${recipe.title}">レシピタイトル</h1>
+    <p><strong>説明:</strong> <span th:text="${recipe.description}"></span></p>
+
+    <p><strong>材料:</strong></p>
+    <p th:text="${recipe.ingredients}"></p>
+
+    <p><strong>手順:</strong></p>
+    <p th:text="${recipe.steps}"></p>
+    
+    <a th:href="@{'/recipes/edit/' + ${recipe.id}}" class="btn btn-primary">編集する</a>
+    <a href="#" th:onclick="'deleteRecipe(' + ${recipe.id} + ')'" class="btn btn-danger">削除する</a>
+
+    <script src="/js/delete-recipe.js"></script>
+
+    <br>
+    <a href="/recipes">レシピ一覧に戻る</a>
+</body>
+</html>

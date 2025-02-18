@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レシピ一覧</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>レシピ一覧</h1>
+        
+        <!-- 新規作成ボタン -->
+        <a href="/recipes/create" class="btn btn-success mb-3">新規作成</a>
+        
+        <!-- レシピ一覧テーブル -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>タイトル</th>
+                    <th>説明</th>
+                    <th>操作</th> <!-- 詳細、編集、削除のための操作列 -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="recipe : ${recipes}">
+                    <td th:text="${recipe.title}"></td>
+                    <td class="recipe-description" th:text="${recipe.description}"></td>
+                    <td>
+                        <!-- 詳細ボタン -->
+                        <a th:href="@{/recipes/{id}(id=${recipe.id})}" class="btn btn-info btn-sm">詳しく見る</a>
+                        <!-- 編集ボタン -->
+                        <a th:href="@{/recipes/edit/{id}(id=${recipe.id})}" class="btn btn-warning btn-sm">編集</a>
+                        <!-- 削除ボタン -->
+                        <a href="#" th:onclick="'deleteRecipe(' + ${recipe.id} + ')'" class="btn btn-danger btn-sm">削除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/js/delete-recipe.js"></script>
+</body>
+</html>

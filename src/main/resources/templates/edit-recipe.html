@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レシピ編集</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>レシピ編集</h1>
+    <form th:action="@{/recipes/edit/{id}(id=${recipe.id})}" method="post">
+        <label for="title">タイトル:</label>
+        <input type="text" id="title" name="title" th:value="${recipe.title}" required>
+        <br>
+        <label for="description">説明:</label>
+        <textarea id="description" name="description" required th:text="${recipe.description}"></textarea>
+        <br>
+        <label for="ingredients">材料:</label>
+        <textarea id="ingredients" name="ingredients" required th:text="${recipe.ingredients}"></textarea>
+        <br>
+        <label for="steps">手順:</label>
+        <textarea id="steps" name="steps" required th:text="${recipe.steps}"></textarea>
+        <br>
+        <button type="submit">保存する</button>
+    </form>
+    <a th:href="@{/recipes/{id}(id=${recipe.id})}">キャンセルして詳細に戻る</a>
+</body>
+</html>
